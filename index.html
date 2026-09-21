@@ -7,59 +7,186 @@
     
     <!-- TAG WAJIB UNTUK APLIKASI PWA -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0d6efd">
+    <!-- Tema warna disesuaikan dengan gradasi baru -->
+    <meta name="theme-color" content="#4e54c8">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     
+    <!-- Font Poppins untuk tampilan yang lebih modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-      body { background-color: #f4f6f9; padding: 20px; font-family: 'Segoe UI', sans-serif; padding-bottom: 80px; }
-      .portal-container { max-width: 600px; margin: auto; }
-      .header-section { text-align: center; margin-bottom: 30px; }
-      .header-logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 15px; }
-      .header-title { font-weight: 700; color: #2c3e50; margin-bottom: 5px; }
-      .header-desc { color: #6c757d; font-size: 0.95em; padding: 0 10px; }
+      body { 
+        /* Background Gradasi Modern (Biru ke Ungu) */
+        background: linear-gradient(135deg, #8f94fb 0%, #4e54c8 100%);
+        background-attachment: fixed; /* Latar tetap saat scroll */
+        padding: 20px; 
+        font-family: 'Poppins', sans-serif; 
+        padding-bottom: 80px; 
+        min-height: 100vh;
+      }
+
+      .portal-container { 
+        max-width: 600px; 
+        margin: auto; 
+      }
       
-      .app-card { background: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.2s; }
-      .app-card:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-      .app-title { font-weight: 600; font-size: 1.1em; margin: 0; color: #333; pointer-events: none; }
-      .btn-container { display: flex; gap: 8px; }
+      /* Header Section (Lebih bersih & elegan) */
+      .header-section { 
+        text-align: center; 
+        margin-bottom: 40px; 
+        margin-top: 20px;
+        color: white; /* Teks putih agar kontras dengan background */
+      }
+      .header-logo { 
+        width: 110px; 
+        height: auto; /* Mempertahankan proporsi asli */
+        /* Hapus border-radius: 50% agar tidak melingkar */
+        border-radius: 12px; /* Diberi sudut tumpul sedikit (opsional, ganti 0 jika ingin kotak siku) */
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+        margin-bottom: 20px; 
+        background-color: white; /* Jika logo transparan, terlihat bagus dengan background putih */
+        padding: 5px; /* Memberi jarak antara logo dan tepi border */
+      }
+      .header-title { 
+        font-weight: 700; 
+        margin-bottom: 8px; 
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Bayangan teks agar terbaca jelas */
+      }
+      .header-desc { 
+        font-size: 0.95em; 
+        padding: 0 10px; 
+        opacity: 0.9;
+        font-weight: 400;
+      }
+      
+      /* Card Aplikasi - Tampilan Glassmorphism (Kaca) atau Putih Bersih */
+      .app-card { 
+        background: rgba(255, 255, 255, 0.95); /* Putih dengan sedikit transparansi */
+        padding: 16px 20px; 
+        border-radius: 16px; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        margin-bottom: 18px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        cursor: pointer; 
+        transition: all 0.3s ease; /* Transisi lebih halus */
+        border-left: 5px solid #4e54c8; /* Aksen garis warna di sisi kiri */
+      }
+      .app-card:hover { 
+        transform: translateY(-4px); 
+        box-shadow: 0 15px 25px rgba(0,0,0,0.15); 
+        background: white;
+      }
+      .app-title { 
+        font-weight: 600; 
+        font-size: 1.1em; 
+        margin: 0; 
+        color: #2c3e50; 
+        pointer-events: none; 
+      }
+      .btn-container { 
+        display: flex; 
+        gap: 10px; 
+      }
+      
+      /* Tombol di dalam Card */
+      .btn-buka {
+        background-color: #4e54c8;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 14px;
+        font-size: 0.85em;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+      .btn-buka:hover { background-color: #3b409c; color: white;}
+      
+      .btn-bagikan {
+        background-color: #f1f3f5;
+        color: #495057;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 6px 14px;
+        font-size: 0.85em;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+      .btn-bagikan:hover { background-color: #e9ecef; }
+
+      /* Loader / Indikator Loading */
+      .loading-text {
+        color: white;
+        text-align: center;
+        font-weight: 500;
+        margin-top: 30px;
+      }
 
       /* TOMBOL MENGAMBANG INSTALL APLIKASI */
       #btn-install {
-          position: fixed; bottom: 25px; right: 25px;
-          background-color: #0d6efd; color: white; border: none;
-          padding: 12px 20px; border-radius: 50px; font-size: 15px; font-weight: bold;
-          box-shadow: 0 4px 10px rgba(13,110,253,0.4); cursor: pointer; z-index: 1000;
-          display: none; /* Disembunyikan sampai event beforeinstallprompt terpicu */
-          align-items: center; gap: 8px;
+          position: fixed; 
+          bottom: 30px; 
+          right: 30px;
+          background: linear-gradient(45deg, #11998e, #38ef7d); /* Gradasi hijau mencolok */
+          color: white; 
+          border: none;
+          padding: 14px 24px; 
+          border-radius: 50px; 
+          font-size: 15px; 
+          font-weight: 600;
+          box-shadow: 0 8px 20px rgba(17,153,142,0.4); 
+          cursor: pointer; 
+          z-index: 1000;
+          display: none; 
+          align-items: center; 
+          gap: 10px;
+          transition: transform 0.3s, box-shadow 0.3s;
       }
-      #btn-install:hover { background-color: #0b5ed7; }
+      #btn-install:hover { 
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(17,153,142,0.5); 
+      }
     </style>
 </head>
 <body>
 
+    <!-- Menambahkan Elemen Vektor/Bentuk (Aksen) Latar Belakang -->
+    <!-- Elemen SVG absolut ini akan diletakkan di belakang konten untuk memberi kesan dinamis -->
+    <svg style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgba(255,255,255,0.05)" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,117.3C384,139,480,213,576,213.3C672,213,768,139,864,122.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+    <svg style="position:fixed; bottom:0; right:0; width:100%; height:100%; z-index:-1; pointer-events:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="rgba(255,255,255,0.05)" fill-opacity="1" d="M0,64L60,101.3C120,139,240,213,360,213.3C480,213,600,139,720,112C840,85,960,107,1080,128C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+
     <div class="portal-container">
       <div class="header-section">
+        <!-- Logo tidak lagi dilingkari, bentuk asli dengan sedikit radius (sudut) -->
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja1Fx6AIsRxcFt8KrYHPM1aXrSosPlXrjRXUfv_s-k7t-IsaM1Ygob2Hpl2h34uBxsNx-mJoloMcJhPR43SrxNaI0ertfFY_vt131zhqMpGBWLDwsxYqPLt2eriRiIIx9_lvmzGMR_2DCPdTJis9BYPjyBvPttV2sG80aEjWfKuqdtkA/s220/favicon.jpg" alt="Logo Remas" class="header-logo">
         <h3 class="header-title">Portal Aplikasi</h3>
         <p class="header-desc">Portal Aplikasi Remaja Masjid Wakaf Haqqul Yaqin Dinoyo</p>
       </div>
       
       <div id="app-list">
-        <div class="text-center text-muted">Memuat data aplikasi...</div>
+        <div class="loading-text">
+          <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+          Memuat data aplikasi...
+        </div>
       </div>
     </div>
 
     <!-- TOMBOL MENGAMBANG INSTALL PWA -->
     <button id="btn-install">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
       Install Portal
     </button>
 
     <script>
-        // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYvq1gR79MqFE8c7mAzPVLzzZyqQAd3YKzvWvIh61DNcpd0BF1iy-tOBoBqgUMj7-J/exec';
+        // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI BAWAH INI
+        const APPS_SCRIPT_URL = 'URL_WEB_APP_ANDA_DI_SINI';
 
         // ==========================================
         // AMBIL DATA DARI SPREADSHEET (APPS SCRIPT)
@@ -70,7 +197,7 @@
                 const apps = await response.json();
                 renderApps(apps);
             } catch (error) {
-                document.getElementById('app-list').innerHTML = '<div class="text-center text-danger">Gagal memuat data. Periksa koneksi Anda.</div>';
+                document.getElementById('app-list').innerHTML = '<div class="text-center text-white mt-4"><strong>Gagal memuat data.</strong><br>Periksa koneksi Anda.</div>';
             }
         }
 
@@ -79,7 +206,7 @@
             container.innerHTML = ''; 
             
             if(apps.length === 0) {
-                container.innerHTML = '<div class="text-center text-muted">Belum ada data aplikasi.</div>';
+                container.innerHTML = '<div class="text-center text-white mt-4">Belum ada data aplikasi.</div>';
                 return;
             }
 
@@ -96,14 +223,14 @@
                 btnGroup.className = 'btn-container';
                 
                 const openBtn = document.createElement('button');
-                openBtn.className = 'btn btn-primary btn-sm';
+                openBtn.className = 'btn-buka';
                 openBtn.textContent = 'Buka';
                 
                 const shareBtn = document.createElement('button');
-                shareBtn.className = 'btn btn-outline-secondary btn-sm';
+                shareBtn.className = 'btn-bagikan';
                 shareBtn.innerHTML = 'Bagikan';
                 shareBtn.onclick = (e) => { 
-                    e.stopPropagation(); 
+                    e.stopPropagation(); // Mencegah ter-klik URL buka
                     shareApp(app.name, app.url); 
                 };
                 
@@ -117,14 +244,13 @@
 
         function shareApp(name, url) {
             if (navigator.share) {
-                navigator.share({ title: name, text: 'Silakan buka ' + name + ':', url: url }).catch(console.error);
+                navigator.share({ title: name, text: 'Silakan buka aplikasi ' + name + ' melalui tautan berikut:', url: url }).catch(console.error);
             } else {
                 navigator.clipboard.writeText('Aplikasi ' + name + ': ' + url);
-                alert('Link telah disalin!');
+                alert('Tautan aplikasi ' + name + ' telah disalin ke clipboard!');
             }
         }
 
-        // Panggil data saat halaman dimuat
         fetchApps();
 
         // ==========================================
@@ -132,11 +258,7 @@
         // ==========================================
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').then(reg => {
-                    console.log('Service Worker terdaftar!', reg);
-                }).catch(err => {
-                    console.log('Service Worker gagal:', err);
-                });
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('Service Worker gagal:', err));
             });
         }
 
@@ -146,7 +268,7 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            btnInstall.style.display = 'flex'; // Tampilkan tombol
+            btnInstall.style.display = 'flex'; 
         });
 
         btnInstall.addEventListener('click', async () => {
