@@ -1,4 +1,4 @@
-const CACHE_NAME = 'portal-rmwhy-v1.1';
+const CACHE_NAME = 'portal-rmwhy-v2.1';
 const urlsToCache = [
   './',
   './index.html',
