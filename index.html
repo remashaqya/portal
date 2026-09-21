@@ -153,15 +153,17 @@
 </head>
 <body>
 
-    <!-- Menambahkan Elemen Vektor/Bentuk (Aksen) Latar Belakang -->
-    <!-- Elemen SVG absolut ini akan diletakkan di belakang konten untuk memberi kesan dinamis -->
-    <svg style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="rgba(255,255,255,0.05)" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,117.3C384,139,480,213,576,213.3C672,213,768,139,864,122.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    <!-- Elemen Vektor/Bentuk (Aksen) Latar Belakang -->
+    <!-- Ombak Atas -->
+    <svg style="position:fixed; top:0; left:0; width:100%; height:150px; z-index:-1; pointer-events:none; opacity: 0.15;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#ffffff" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,117.3C384,139,480,213,576,213.3C672,213,768,139,864,122.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
     </svg>
-    <svg style="position:fixed; bottom:0; right:0; width:100%; height:100%; z-index:-1; pointer-events:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="rgba(255,255,255,0.05)" fill-opacity="1" d="M0,64L60,101.3C120,139,240,213,360,213.3C480,213,600,139,720,112C840,85,960,107,1080,128C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    
+    <!-- Ombak Bawah -->
+    <svg style="position:fixed; bottom:0; left:0; width:100%; height:150px; z-index:-1; pointer-events:none; opacity: 0.15;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#ffffff" fill-opacity="1" d="M0,64L60,101.3C120,139,240,213,360,213.3C480,213,600,139,720,112C840,85,960,107,1080,128C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
     </svg>
-
+    
     <div class="portal-container">
       <div class="header-section">
         <!-- Logo tidak lagi dilingkari, bentuk asli dengan sedikit radius (sudut) -->
