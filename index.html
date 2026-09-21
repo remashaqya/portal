@@ -193,14 +193,29 @@
         // ==========================================
         async function fetchApps() {
             try {
-                const response = await fetch(APPS_SCRIPT_URL);
+                // Tambahkan opsi redirect 'follow'
+                const response = await fetch(APPS_SCRIPT_URL, { 
+                    method: 'GET',
+                    redirect: 'follow' 
+                });
+                
+                // Cek apakah response berupa HTML (Biasanya terblokir halaman login Google)
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("text/html")) {
+                    throw new Error("Akses ditolak oleh Google. Pastikan akses Web App diatur ke 'Siapa Saja' (Anyone).");
+                }
+
                 const apps = await response.json();
                 renderApps(apps);
             } catch (error) {
-                document.getElementById('app-list').innerHTML = '<div class="text-center text-white mt-4"><strong>Gagal memuat data.</strong><br>Periksa koneksi Anda.</div>';
+                console.error("Error Detail:", error);
+                document.getElementById('app-list').innerHTML = `
+                  <div class="text-center text-white mt-4">
+                    <strong>Gagal memuat data.</strong><br>
+                    <small style="color:#ffcccc;">${error.message}</small>
+                  </div>`;
             }
         }
-
         function renderApps(apps) {
             const container = document.getElementById('app-list');
             container.innerHTML = ''; 
